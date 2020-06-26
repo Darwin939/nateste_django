@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_api'
+    'rest_framework',
+    'main_api.apps.MainApiConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -68,8 +68,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'nateste.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+WSGI_APPLICATION = 'nateste.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -78,15 +83,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tyqcokht',
-        'HOST':'balarama.db.elephantsql.com',
-        'PORT':'5432',
-        'PASSWORD':'UI7mFIzxsqjXk2YwD6fXqKgFOr63zESB',
-        'USER':'tyqcokht'
+        'HOST': 'balarama.db.elephantsql.com',
+        'PORT': '5432',
+        'PASSWORD': 'UI7mFIzxsqjXk2YwD6fXqKgFOr63zESB',
+        'USER': 'tyqcokht'
 
     }
 }
-
-
+DATABASE_URL = "postgres://tyqcokht:UI7mFIzxsqjXk2YwD6fXqKgFOr63zESB@balarama.db.elephantsql.com:5432/tyqcokht"
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -105,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -119,8 +122,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
